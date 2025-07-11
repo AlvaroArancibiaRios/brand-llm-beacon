@@ -26,27 +26,27 @@ const Index = () => {
   const mockRecommendations = [
     {
       id: '1',
-      title: 'Improve Content Authority',
-      description: 'Create more authoritative content that LLMs are likely to reference when discussing your industry.',
+      title: 'Mejorar Autoridad del Contenido',
+      description: 'Crear contenido más autoritativo que los LLMs puedan referenciar al discutir tu industria.',
       priority: 'high' as const,
       category: 'content' as const,
-      impact: '+25% mention rate'
+      impact: '+25% tasa de menciones'
     },
     {
       id: '2',
-      title: 'Optimize Brand Descriptions',
-      description: 'Enhance your public-facing descriptions to include key terms that improve AI model understanding.',
+      title: 'Optimizar Descripciones de Marca',
+      description: 'Mejora tus descripciones públicas para incluir términos clave que mejoren la comprensión de los modelos de IA.',
       priority: 'medium' as const,
       category: 'seo' as const,
-      impact: '+15% position improvement'
+      impact: '+15% mejora de posición'
     },
     {
       id: '3',
-      title: 'Increase Digital Presence',
-      description: 'Expand your presence on platforms that AI models frequently crawl for information.',
+      title: 'Aumentar Presencia Digital',
+      description: 'Expandir tu presencia en plataformas que los modelos de IA frecuentemente rastrean para obtener información.',
       priority: 'medium' as const,
       category: 'presence' as const,
-      impact: '+30% visibility'
+      impact: '+30% visibilidad'
     }
   ];
 
@@ -60,8 +60,8 @@ const Index = () => {
     setShowResults(true);
     
     toast({
-      title: "Analysis Complete!",
-      description: `Successfully analyzed "${brand}" across 5 LLM models.`,
+      title: "¡Análisis Completado!",
+      description: `Se analizó exitosamente "${brand}" en 5 modelos LLM.`,
     });
   };
 
@@ -76,13 +76,13 @@ const Index = () => {
                 <Brain className="h-6 w-6 text-white" />
               </div>
               <div>
-                <h1 className="text-xl font-bold">LLM AEO Tracker</h1>
-                <p className="text-sm text-muted-foreground">AI Answer Engine Optimization</p>
+                <h1 className="text-xl font-bold">Rastreador LLM AEO</h1>
+                <p className="text-sm text-muted-foreground">Optimización de Motores de Respuestas de IA</p>
               </div>
             </div>
             <Badge variant="secondary" className="bg-primary/10 text-primary border-primary/20">
               <Zap className="h-3 w-3 mr-1" />
-              MVP Version
+              Versión MVP
             </Badge>
           </div>
         </div>
@@ -110,9 +110,9 @@ const Index = () => {
                     <div className="h-16 w-16 rounded-full bg-gradient-primary/10 flex items-center justify-center mx-auto mb-4">
                       <Search className="h-8 w-8 text-primary" />
                     </div>
-                    <h3 className="text-lg font-semibold mb-2">Ready to Analyze</h3>
+                    <h3 className="text-lg font-semibold mb-2">Listo para Analizar</h3>
                     <p className="text-muted-foreground max-w-md mx-auto">
-                      Enter your brand name and a query to see how your brand performs across different AI models.
+                      Ingresa el nombre de tu marca y una consulta para ver cómo funciona tu marca en diferentes modelos de IA.
                     </p>
                   </div>
                 </CardContent>
@@ -126,9 +126,9 @@ const Index = () => {
                     <div className="h-16 w-16 rounded-full bg-gradient-primary/10 flex items-center justify-center mx-auto mb-4 animate-pulse">
                       <Brain className="h-8 w-8 text-primary" />
                     </div>
-                    <h3 className="text-lg font-semibold mb-2">Analyzing Brand Presence</h3>
+                    <h3 className="text-lg font-semibold mb-2">Analizando Presencia de Marca</h3>
                     <p className="text-muted-foreground max-w-md mx-auto mb-4">
-                      Querying multiple AI models and analyzing responses...
+                      Consultando múltiples modelos de IA y analizando respuestas...
                     </p>
                     <div className="w-64 mx-auto bg-secondary rounded-full h-2">
                       <div className="bg-gradient-primary h-2 rounded-full animate-pulse" style={{ width: '60%' }}></div>
@@ -143,30 +143,30 @@ const Index = () => {
                 {/* Metrics Cards */}
                 <div className="grid md:grid-cols-4 gap-4">
                   <MetricsCard
-                    title="Total Mentions"
+                    title="Menciones Totales"
                     value="11"
-                    description="Across all models"
+                    description="En todos los modelos"
                     icon={<Target className="h-4 w-4 text-primary" />}
                     trend="up"
                   />
                   <MetricsCard
-                    title="Avg Position"
+                    title="Posición Promedio"
                     value="3.0"
-                    description="When mentioned"
+                    description="Cuando se menciona"
                     icon={<TrendingUp className="h-4 w-4 text-blue-500" />}
                     color="secondary"
                   />
                   <MetricsCard
-                    title="Best Model"
+                    title="Mejor Modelo"
                     value="Gemini"
-                    description="Highest mentions"
+                    description="Mayor menciones"
                     icon={<BarChart3 className="h-4 w-4 text-green-500" />}
                     color="success"
                   />
                   <MetricsCard
-                    title="AEO Score"
+                    title="Puntuación AEO"
                     value="7.2/10"
-                    description="Overall visibility"
+                    description="Visibilidad general"
                     icon={<Brain className="h-4 w-4 text-yellow-500" />}
                     color="warning"
                   />
@@ -178,9 +178,9 @@ const Index = () => {
                 {/* Query Results */}
                 <Card className="border-border/50 bg-gradient-to-br from-card/80 to-card/60 backdrop-blur-sm">
                   <CardHeader>
-                    <CardTitle>Latest Query Results</CardTitle>
+                    <CardTitle>Últimos Resultados de Consulta</CardTitle>
                     <CardDescription>
-                      Detailed breakdown of brand mentions and context
+                      Desglose detallado de menciones de marca y contexto
                     </CardDescription>
                   </CardHeader>
                   <CardContent>
@@ -194,12 +194,15 @@ const Index = () => {
                                 #{model.position}
                               </Badge>
                               <Badge variant="secondary" className="text-xs">
-                                {model.mentions} mentions
+                                {model.mentions} menciones
                               </Badge>
                             </div>
                           </div>
                           <p className="text-sm text-muted-foreground">
-                            Your brand appeared {model.mentions} time(s) in position {model.position} with {model.sentiment} context.
+                            Tu marca apareció {model.mentions} vez/veces en la posición {model.position} con contexto {
+                              model.sentiment === 'positive' ? 'positivo' : 
+                              model.sentiment === 'neutral' ? 'neutral' : 'negativo'
+                            }.
                           </p>
                         </div>
                       ))}

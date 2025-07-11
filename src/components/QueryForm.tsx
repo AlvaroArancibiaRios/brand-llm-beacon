@@ -27,19 +27,19 @@ export const QueryForm = ({ onSubmit, isLoading = false }: QueryFormProps) => {
       <CardHeader className="pb-4">
         <CardTitle className="flex items-center gap-2 text-xl">
           <Sparkles className="h-5 w-5 text-primary" />
-          LLM Brand Query
+          Consulta de Marca LLM
         </CardTitle>
         <CardDescription>
-          Track how your brand appears across different AI models
+          Rastrea cómo aparece tu marca en diferentes modelos de IA
         </CardDescription>
       </CardHeader>
       <CardContent>
         <form onSubmit={handleSubmit} className="space-y-4">
           <div className="space-y-2">
-            <Label htmlFor="brand">Brand Name</Label>
+            <Label htmlFor="brand">Nombre de la Marca</Label>
             <Input
               id="brand"
-              placeholder="e.g. Tesla, Apple, OpenAI"
+              placeholder="ej. Tesla, Apple, OpenAI"
               value={brand}
               onChange={(e) => setBrand(e.target.value)}
               className="bg-background/50 border-border/60"
@@ -47,10 +47,10 @@ export const QueryForm = ({ onSubmit, isLoading = false }: QueryFormProps) => {
           </div>
           
           <div className="space-y-2">
-            <Label htmlFor="query">Query</Label>
+            <Label htmlFor="query">Consulta</Label>
             <Textarea
               id="query"
-              placeholder="e.g. What are the best electric car companies?"
+              placeholder="ej. ¿Cuáles son las mejores empresas de autos eléctricos?"
               value={query}
               onChange={(e) => setQuery(e.target.value)}
               className="bg-background/50 border-border/60 min-h-[100px]"
@@ -63,7 +63,7 @@ export const QueryForm = ({ onSubmit, isLoading = false }: QueryFormProps) => {
             disabled={!query.trim() || !brand.trim() || isLoading}
           >
             <Search className="h-4 w-4 mr-2" />
-            {isLoading ? "Analyzing..." : "Analyze Brand Presence"}
+            {isLoading ? "Analizando..." : "Analizar Presencia de Marca"}
           </Button>
         </form>
       </CardContent>

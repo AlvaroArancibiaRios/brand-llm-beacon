@@ -25,9 +25,9 @@ export const LLMComparisonChart = ({ data }: LLMComparisonChartProps) => {
   return (
     <Card className="border-border/50 bg-gradient-to-br from-card/80 to-card/60 backdrop-blur-sm">
       <CardHeader>
-        <CardTitle>Brand Mentions by LLM</CardTitle>
+        <CardTitle>Menciones de Marca por LLM</CardTitle>
         <CardDescription>
-          Compare your brand's presence across different AI models
+          Compara la presencia de tu marca en diferentes modelos de IA
         </CardDescription>
       </CardHeader>
       <CardContent>

@@ -30,6 +30,19 @@ export const RecommendationsPanel = ({ recommendations }: RecommendationsPanelPr
     }
   };
 
+  const getPriorityText = (priority: string) => {
+    switch (priority) {
+      case 'high':
+        return 'alta';
+      case 'medium':
+        return 'media';
+      case 'low':
+        return 'baja';
+      default:
+        return priority;
+    }
+  };
+
   const getCategoryIcon = (category: string) => {
     switch (category) {
       case 'content':
@@ -50,10 +63,10 @@ export const RecommendationsPanel = ({ recommendations }: RecommendationsPanelPr
       <CardHeader>
         <CardTitle className="flex items-center gap-2">
           <Lightbulb className="h-5 w-5 text-primary" />
-          AEO Recommendations
+          Recomendaciones AEO
         </CardTitle>
         <CardDescription>
-          Strategic insights to improve your brand's AI visibility
+          Estrategias para mejorar la visibilidad de tu marca en IA
         </CardDescription>
       </CardHeader>
       <CardContent className="space-y-4">
@@ -68,7 +81,7 @@ export const RecommendationsPanel = ({ recommendations }: RecommendationsPanelPr
                 <h4 className="font-medium text-sm">{rec.title}</h4>
               </div>
               <Badge variant={getPriorityColor(rec.priority)} className="text-xs">
-                {rec.priority}
+                {getPriorityText(rec.priority)}
               </Badge>
             </div>
             
@@ -78,11 +91,11 @@ export const RecommendationsPanel = ({ recommendations }: RecommendationsPanelPr
             
             <div className="flex items-center justify-between">
               <span className="text-xs text-green-400 font-medium">
-                Impact: {rec.impact}
+                Impacto: {rec.impact}
               </span>
               <Button size="sm" variant="outline" className="h-7 text-xs">
                 <ExternalLink className="h-3 w-3 mr-1" />
-                Learn More
+                Saber Más
               </Button>
             </div>
           </div>
@@ -91,8 +104,8 @@ export const RecommendationsPanel = ({ recommendations }: RecommendationsPanelPr
         {recommendations.length === 0 && (
           <div className="text-center py-8 text-muted-foreground">
             <Lightbulb className="h-12 w-12 mx-auto mb-4 opacity-50" />
-            <p>No recommendations available yet.</p>
-            <p className="text-sm">Run a brand analysis to get personalized insights.</p>
+            <p>No hay recomendaciones disponibles aún.</p>
+            <p className="text-sm">Ejecuta un análisis de marca para obtener insights personalizados.</p>
           </div>
         )}
       </CardContent>
