@@ -7,11 +7,10 @@ import { OCRAnalyzer } from "@/components/OCRAnalyzer";
 import { SEOAnalyzer } from "@/components/SEOAnalyzer";
 import { CompetitorAnalysis } from "@/components/CompetitorAnalysis";
 import { DocumentGenerator } from "@/components/DocumentGenerator";
-import { Button } from "@/components/ui/button";
+import { BurgerMenu } from "@/components/BurgerMenu";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
-import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
-import { BarChart3, Search, Target, TrendingUp, Brain, Zap, Scan, FileSearch, Users, FileText } from "lucide-react";
+import { BarChart3, Search, Target, TrendingUp, Brain, Zap } from "lucide-react";
 import { useToast } from "@/hooks/use-toast";
 
 const Index = () => {
@@ -77,13 +76,16 @@ const Index = () => {
       <header className="border-b border-border/50 bg-card/30 backdrop-blur-sm">
         <div className="container mx-auto px-4 py-4">
           <div className="flex items-center justify-between">
-            <div className="flex items-center gap-3">
-              <div className="h-10 w-10 rounded-lg bg-gradient-primary flex items-center justify-center">
-                <Brain className="h-6 w-6 text-white" />
-              </div>
-              <div>
-                <h1 className="text-xl font-bold">Rastreador LLM AEO</h1>
-                <p className="text-sm text-muted-foreground">Optimización de Motores de Respuestas de IA</p>
+            <div className="flex items-center gap-4">
+              <BurgerMenu activeTab={activeTab} onTabChange={setActiveTab} />
+              <div className="flex items-center gap-3">
+                <div className="h-10 w-10 rounded-lg bg-gradient-primary flex items-center justify-center">
+                  <Brain className="h-6 w-6 text-white" />
+                </div>
+                <div>
+                  <h1 className="text-xl font-bold">Rastreador LLM AEO</h1>
+                  <p className="text-sm text-muted-foreground">Optimización de Motores de Respuestas de IA</p>
+                </div>
               </div>
             </div>
             <Badge variant="secondary" className="bg-primary/10 text-primary border-primary/20">
@@ -95,31 +97,10 @@ const Index = () => {
       </header>
 
       <main className="container mx-auto px-4 py-8">
-        <Tabs value={activeTab} onValueChange={setActiveTab} className="w-full">
-          <TabsList className="grid w-full grid-cols-5 mb-6">
-            <TabsTrigger value="consulta" className="flex items-center gap-2">
-              <Search className="h-4 w-4" />
-              Consulta LLM
-            </TabsTrigger>
-            <TabsTrigger value="ocr" className="flex items-center gap-2">
-              <Scan className="h-4 w-4" />
-              OCR Análisis
-            </TabsTrigger>
-            <TabsTrigger value="seo" className="flex items-center gap-2">
-              <FileSearch className="h-4 w-4" />
-              SEO Análisis
-            </TabsTrigger>
-            <TabsTrigger value="competidores" className="flex items-center gap-2">
-              <Users className="h-4 w-4" />
-              Competidores
-            </TabsTrigger>
-            <TabsTrigger value="documentos" className="flex items-center gap-2">
-              <FileText className="h-4 w-4" />
-              Documentos
-            </TabsTrigger>
-          </TabsList>
+        <div className="w-full">
+          {/* Sección actual según activeTab */}
 
-          <TabsContent value="consulta">
+          {activeTab === "consulta" && (
             <div className="grid lg:grid-cols-3 gap-6">
               {/* Left Column - Query Form */}
               <div className="lg:col-span-1">
@@ -244,24 +225,13 @@ const Index = () => {
                 )}
               </div>
             </div>
-          </TabsContent>
+          )}
 
-          <TabsContent value="ocr">
-            <OCRAnalyzer />
-          </TabsContent>
-
-          <TabsContent value="seo">
-            <SEOAnalyzer />
-          </TabsContent>
-
-          <TabsContent value="competidores">
-            <CompetitorAnalysis />
-          </TabsContent>
-
-          <TabsContent value="documentos">
-            <DocumentGenerator />
-          </TabsContent>
-        </Tabs>
+          {activeTab === "ocr" && <OCRAnalyzer />}
+          {activeTab === "seo" && <SEOAnalyzer />}
+          {activeTab === "competidores" && <CompetitorAnalysis />}
+          {activeTab === "documentos" && <DocumentGenerator />}
+        </div>
       </main>
     </div>
   );
