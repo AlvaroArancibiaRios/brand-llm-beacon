@@ -76,22 +76,22 @@ const Index = () => {
       <header className="border-b border-border/50 bg-card/30 backdrop-blur-sm">
         <div className="container mx-auto px-4 py-4">
           <div className="flex items-center justify-between">
-            <div className="flex items-center gap-4">
-              <BurgerMenu activeTab={activeTab} onTabChange={setActiveTab} />
-              <div className="flex items-center gap-3">
-                <div className="h-10 w-10 rounded-lg bg-gradient-primary flex items-center justify-center">
-                  <Brain className="h-6 w-6 text-white" />
-                </div>
-                <div>
-                  <h1 className="text-xl font-bold">Rastreador LLM AEO</h1>
-                  <p className="text-sm text-muted-foreground">Optimización de Motores de Respuestas de IA</p>
-                </div>
+            <div className="flex items-center gap-3">
+              <div className="h-10 w-10 rounded-lg bg-gradient-primary flex items-center justify-center">
+                <Brain className="h-6 w-6 text-white" />
+              </div>
+              <div>
+                <h1 className="text-xl font-bold">Rastreador LLM AEO</h1>
+                <p className="text-sm text-muted-foreground">Optimización de Motores de Respuestas de IA</p>
               </div>
             </div>
-            <Badge variant="secondary" className="bg-primary/10 text-primary border-primary/20">
-              <Zap className="h-3 w-3 mr-1" />
-              Versión Avanzada
-            </Badge>
+            <div className="flex items-center gap-4">
+              <Badge variant="secondary" className="bg-primary/10 text-primary border-primary/20">
+                <Zap className="h-3 w-3 mr-1" />
+                Versión Avanzada
+              </Badge>
+              <BurgerMenu activeTab={activeTab} onTabChange={setActiveTab} />
+            </div>
           </div>
         </div>
       </header>
