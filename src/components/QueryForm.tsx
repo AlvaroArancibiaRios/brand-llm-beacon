@@ -47,15 +47,7 @@ export const QueryForm = ({
       <form onSubmit={handleSubmit} className="space-y-6">
         {/* Brand Input */}
         <div className="relative">
-          <div className="absolute left-4 top-1/2 -translate-y-1/2 flex items-center gap-2 text-muted-foreground">
-            <Search className="h-5 w-5" />
-          </div>
-          <Input id="brand" placeholder="Nombre de la marca (ej. Tesla, Apple, OpenAI)" value={brand} onChange={e => setBrand(e.target.value)} onKeyDown={handleKeyDown} className="h-14 text-lg pl-14 pr-6 rounded-2xl border-2 border-border/40 bg-background/50 backdrop-blur-sm hover:border-border/60 focus:border-primary/50 focus:ring-2 focus:ring-primary/20 transition-all duration-200 placeholder:text-muted-foreground/60" />
-          {brand.trim() && (
-            <div className="absolute right-4 top-1/2 -translate-y-1/2 flex items-center gap-2 text-primary">
-              <span className="text-sm font-medium">Listo para Analizar</span>
-            </div>
-          )}
+          <Input id="brand" placeholder="Nombre de la marca (ej. Tesla, Apple, OpenAI)" value={brand} onChange={e => setBrand(e.target.value)} onKeyDown={handleKeyDown} className="h-14 text-lg pl-6 pr-6 rounded-2xl border-2 border-border/40 bg-background/50 backdrop-blur-sm hover:border-border/60 focus:border-primary/50 focus:ring-2 focus:ring-primary/20 transition-all duration-200 placeholder:text-muted-foreground/60" />
         </div>
 
         {/* Query Input */}
