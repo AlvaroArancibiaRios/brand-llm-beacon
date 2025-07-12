@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { QueryForm } from "@/components/QueryForm";
+import { SearchHeader } from "@/components/SearchHeader";
 import { MetricsCard } from "@/components/MetricsCard";
 import { LLMComparisonChart } from "@/components/LLMComparisonChart";
 import { RecommendationsPanel } from "@/components/RecommendationsPanel";
@@ -12,12 +13,16 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/com
 import { Badge } from "@/components/ui/badge";
 import { BarChart3, Search, Target, TrendingUp, Brain, Zap } from "lucide-react";
 import { useToast } from "@/hooks/use-toast";
+import { useSearch } from "@/contexts/SearchContext";
 const Index = () => {
-  const {
-    toast
-  } = useToast();
-  const [isAnalyzing, setIsAnalyzing] = useState(false);
-  const [showResults, setShowResults] = useState(false);
+  const { toast } = useToast();
+  const { 
+    isAnalyzing, 
+    showResults, 
+    setIsAnalyzing, 
+    setShowResults, 
+    startNewSearch 
+  } = useSearch();
   const [activeTab, setActiveTab] = useState("consulta");
 
   // Mock data for demonstration
@@ -70,7 +75,7 @@ const Index = () => {
     impact: '+30% visibilidad'
   }];
   const handleQuerySubmit = async (query: string, brand: string) => {
-    setIsAnalyzing(true);
+    startNewSearch(query, brand);
 
     // Simulate API call
     await new Promise(resolve => setTimeout(resolve, 3000));
@@ -82,8 +87,11 @@ const Index = () => {
     });
   };
   return <div className="min-h-screen bg-gradient-to-br from-background via-background/95 to-background/90">
+      {/* Search Header - aparece después de búsqueda */}
+      <SearchHeader />
+      
       {/* Header */}
-      <header className="border-b border-border/20 bg-background/50 backdrop-blur-xl sticky top-0 z-50">
+      <header className="border-b border-border/20 bg-background/50 backdrop-blur-xl sticky top-0 z-40">
         <div className="max-w-7xl mx-auto px-6 py-4">
           <div className="flex items-center justify-between">
             <div className="flex items-center gap-3">

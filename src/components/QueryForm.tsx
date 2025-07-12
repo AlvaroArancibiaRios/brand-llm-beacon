@@ -3,6 +3,7 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { Search, Sparkles, ArrowRight } from "lucide-react";
+import { useSearch } from "@/contexts/SearchContext";
 interface QueryFormProps {
   onSubmit: (query: string, brand: string) => void;
   isLoading?: boolean;
@@ -11,6 +12,7 @@ export const QueryForm = ({
   onSubmit,
   isLoading = false
 }: QueryFormProps) => {
+  const { hasSearched } = useSearch();
   const [query, setQuery] = useState("");
   const [brand, setBrand] = useState("");
   const handleSubmit = (e: React.FormEvent) => {
@@ -28,20 +30,22 @@ export const QueryForm = ({
     }
   };
   return <div className="w-full max-w-4xl mx-auto">
-      {/* Header */}
-      <div className="text-center mb-8">
-        <div className="flex items-center justify-center gap-3 mb-3">
-          <div className="p-2 rounded-full bg-primary/10">
-            <Sparkles className="h-6 w-6 text-primary" />
+      {/* Header - solo aparece si no hay búsqueda activa */}
+      {!hasSearched && (
+        <div className="text-center mb-8">
+          <div className="flex items-center justify-center gap-3 mb-3">
+            <div className="p-2 rounded-full bg-primary/10">
+              <Sparkles className="h-6 w-6 text-primary" />
+            </div>
+            <h1 className="text-2xl font-semibold text-foreground">
+              Consulta de Marca LLM
+            </h1>
           </div>
-          <h1 className="text-2xl font-semibold text-foreground">
-            Consulta de Marca LLM
-          </h1>
+          <p className="text-muted-foreground text-lg px-[60px] py-[10px] mx-[168px]">
+            Ingresa el nombre de tu marca y una consulta para ver cómo funciona tu marca en diferentes modelos de IA.
+          </p>
         </div>
-        <p className="text-muted-foreground text-lg px-[60px] py-[10px] mx-[168px]">
-          Ingresa el nombre de tu marca y una consulta para ver cómo funciona tu marca en diferentes modelos de IA.
-        </p>
-      </div>
+      )}
 
       {/* Modern Search Interface */}
       <form onSubmit={handleSubmit} className="space-y-6">
