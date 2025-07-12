@@ -110,7 +110,7 @@ const Index = () => {
         <div className="w-full">
           {/* Sección actual según activeTab */}
 
-          {activeTab === "consulta" && <div className="flex flex-col items-center space-y-12">
+          {activeTab === "consulta" && <div className="flex flex-col items-center justify-center min-h-[60vh] space-y-12">
               {/* Query Form Centered */}
               <div className="w-full max-w-4xl">
                 <QueryForm onSubmit={handleQuerySubmit} isLoading={isAnalyzing} />
