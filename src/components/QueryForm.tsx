@@ -38,7 +38,7 @@ export const QueryForm = ({
             Consulta de Marca LLM
           </h1>
         </div>
-        <p className="text-muted-foreground text-lg px-[60px] py-[10px] mx-[218px]">
+        <p className="text-muted-foreground text-lg px-[60px] py-[10px] mx-[168px]">
           Ingresa el nombre de tu marca y una consulta para ver cómo funciona tu marca en diferentes modelos de IA.
         </p>
       </div>
