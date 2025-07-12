@@ -3,16 +3,22 @@ import { QueryForm } from "@/components/QueryForm";
 import { MetricsCard } from "@/components/MetricsCard";
 import { LLMComparisonChart } from "@/components/LLMComparisonChart";
 import { RecommendationsPanel } from "@/components/RecommendationsPanel";
+import { OCRAnalyzer } from "@/components/OCRAnalyzer";
+import { SEOAnalyzer } from "@/components/SEOAnalyzer";
+import { CompetitorAnalysis } from "@/components/CompetitorAnalysis";
+import { DocumentGenerator } from "@/components/DocumentGenerator";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
-import { BarChart3, Search, Target, TrendingUp, Brain, Zap } from "lucide-react";
+import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
+import { BarChart3, Search, Target, TrendingUp, Brain, Zap, Scan, FileSearch, Users, FileText } from "lucide-react";
 import { useToast } from "@/hooks/use-toast";
 
 const Index = () => {
   const { toast } = useToast();
   const [isAnalyzing, setIsAnalyzing] = useState(false);
   const [showResults, setShowResults] = useState(false);
+  const [activeTab, setActiveTab] = useState("consulta");
 
   // Mock data for demonstration
   const mockLLMData = [
@@ -82,137 +88,180 @@ const Index = () => {
             </div>
             <Badge variant="secondary" className="bg-primary/10 text-primary border-primary/20">
               <Zap className="h-3 w-3 mr-1" />
-              Versión MVP
+              Versión Avanzada
             </Badge>
           </div>
         </div>
       </header>
 
       <main className="container mx-auto px-4 py-8">
-        <div className="grid lg:grid-cols-3 gap-6">
-          {/* Left Column - Query Form */}
-          <div className="lg:col-span-1">
-            <QueryForm onSubmit={handleQuerySubmit} isLoading={isAnalyzing} />
-            
-            {showResults && (
-              <div className="mt-6">
-                <RecommendationsPanel recommendations={mockRecommendations} />
+        <Tabs value={activeTab} onValueChange={setActiveTab} className="w-full">
+          <TabsList className="grid w-full grid-cols-5 mb-6">
+            <TabsTrigger value="consulta" className="flex items-center gap-2">
+              <Search className="h-4 w-4" />
+              Consulta LLM
+            </TabsTrigger>
+            <TabsTrigger value="ocr" className="flex items-center gap-2">
+              <Scan className="h-4 w-4" />
+              OCR Análisis
+            </TabsTrigger>
+            <TabsTrigger value="seo" className="flex items-center gap-2">
+              <FileSearch className="h-4 w-4" />
+              SEO Análisis
+            </TabsTrigger>
+            <TabsTrigger value="competidores" className="flex items-center gap-2">
+              <Users className="h-4 w-4" />
+              Competidores
+            </TabsTrigger>
+            <TabsTrigger value="documentos" className="flex items-center gap-2">
+              <FileText className="h-4 w-4" />
+              Documentos
+            </TabsTrigger>
+          </TabsList>
+
+          <TabsContent value="consulta">
+            <div className="grid lg:grid-cols-3 gap-6">
+              {/* Left Column - Query Form */}
+              <div className="lg:col-span-1">
+                <QueryForm onSubmit={handleQuerySubmit} isLoading={isAnalyzing} />
+                
+                {showResults && (
+                  <div className="mt-6">
+                    <RecommendationsPanel recommendations={mockRecommendations} />
+                  </div>
+                )}
               </div>
-            )}
-          </div>
 
-          {/* Right Column - Results */}
-          <div className="lg:col-span-2 space-y-6">
-            {!showResults && !isAnalyzing && (
-              <Card className="border-border/50 bg-gradient-to-br from-card/80 to-card/60 backdrop-blur-sm">
-                <CardContent className="py-12">
-                  <div className="text-center">
-                    <div className="h-16 w-16 rounded-full bg-gradient-primary/10 flex items-center justify-center mx-auto mb-4">
-                      <Search className="h-8 w-8 text-primary" />
-                    </div>
-                    <h3 className="text-lg font-semibold mb-2">Listo para Analizar</h3>
-                    <p className="text-muted-foreground max-w-md mx-auto">
-                      Ingresa el nombre de tu marca y una consulta para ver cómo funciona tu marca en diferentes modelos de IA.
-                    </p>
-                  </div>
-                </CardContent>
-              </Card>
-            )}
-
-            {isAnalyzing && (
-              <Card className="border-border/50 bg-gradient-to-br from-card/80 to-card/60 backdrop-blur-sm">
-                <CardContent className="py-12">
-                  <div className="text-center">
-                    <div className="h-16 w-16 rounded-full bg-gradient-primary/10 flex items-center justify-center mx-auto mb-4 animate-pulse">
-                      <Brain className="h-8 w-8 text-primary" />
-                    </div>
-                    <h3 className="text-lg font-semibold mb-2">Analizando Presencia de Marca</h3>
-                    <p className="text-muted-foreground max-w-md mx-auto mb-4">
-                      Consultando múltiples modelos de IA y analizando respuestas...
-                    </p>
-                    <div className="w-64 mx-auto bg-secondary rounded-full h-2">
-                      <div className="bg-gradient-primary h-2 rounded-full animate-pulse" style={{ width: '60%' }}></div>
-                    </div>
-                  </div>
-                </CardContent>
-              </Card>
-            )}
-
-            {showResults && (
-              <>
-                {/* Metrics Cards */}
-                <div className="grid md:grid-cols-4 gap-4">
-                  <MetricsCard
-                    title="Menciones Totales"
-                    value="11"
-                    description="En todos los modelos"
-                    icon={<Target className="h-4 w-4 text-primary" />}
-                    trend="up"
-                  />
-                  <MetricsCard
-                    title="Posición Promedio"
-                    value="3.0"
-                    description="Cuando se menciona"
-                    icon={<TrendingUp className="h-4 w-4 text-blue-500" />}
-                    color="secondary"
-                  />
-                  <MetricsCard
-                    title="Mejor Modelo"
-                    value="Gemini"
-                    description="Mayor menciones"
-                    icon={<BarChart3 className="h-4 w-4 text-green-500" />}
-                    color="success"
-                  />
-                  <MetricsCard
-                    title="Puntuación AEO"
-                    value="7.2/10"
-                    description="Visibilidad general"
-                    icon={<Brain className="h-4 w-4 text-yellow-500" />}
-                    color="warning"
-                  />
-                </div>
-
-                {/* Chart */}
-                <LLMComparisonChart data={mockLLMData} />
-
-                {/* Query Results */}
-                <Card className="border-border/50 bg-gradient-to-br from-card/80 to-card/60 backdrop-blur-sm">
-                  <CardHeader>
-                    <CardTitle>Últimos Resultados de Consulta</CardTitle>
-                    <CardDescription>
-                      Desglose detallado de menciones de marca y contexto
-                    </CardDescription>
-                  </CardHeader>
-                  <CardContent>
-                    <div className="space-y-4">
-                      {mockLLMData.map((model) => (
-                        <div key={model.model} className="p-4 rounded-lg border border-border/30 bg-background/30">
-                          <div className="flex items-center justify-between mb-2">
-                            <h4 className="font-medium">{model.model}</h4>
-                            <div className="flex gap-2">
-                              <Badge variant="outline" className="text-xs">
-                                #{model.position}
-                              </Badge>
-                              <Badge variant="secondary" className="text-xs">
-                                {model.mentions} menciones
-                              </Badge>
-                            </div>
-                          </div>
-                          <p className="text-sm text-muted-foreground">
-                            Tu marca apareció {model.mentions} vez/veces en la posición {model.position} con contexto {
-                              model.sentiment === 'positive' ? 'positivo' : 
-                              model.sentiment === 'neutral' ? 'neutral' : 'negativo'
-                            }.
-                          </p>
+              {/* Right Column - Results */}
+              <div className="lg:col-span-2 space-y-6">
+                {!showResults && !isAnalyzing && (
+                  <Card className="border-border/50 bg-gradient-to-br from-card/80 to-card/60 backdrop-blur-sm">
+                    <CardContent className="py-12">
+                      <div className="text-center">
+                        <div className="h-16 w-16 rounded-full bg-gradient-primary/10 flex items-center justify-center mx-auto mb-4">
+                          <Search className="h-8 w-8 text-primary" />
                         </div>
-                      ))}
+                        <h3 className="text-lg font-semibold mb-2">Listo para Analizar</h3>
+                        <p className="text-muted-foreground max-w-md mx-auto">
+                          Ingresa el nombre de tu marca y una consulta para ver cómo funciona tu marca en diferentes modelos de IA.
+                        </p>
+                      </div>
+                    </CardContent>
+                  </Card>
+                )}
+
+                {isAnalyzing && (
+                  <Card className="border-border/50 bg-gradient-to-br from-card/80 to-card/60 backdrop-blur-sm">
+                    <CardContent className="py-12">
+                      <div className="text-center">
+                        <div className="h-16 w-16 rounded-full bg-gradient-primary/10 flex items-center justify-center mx-auto mb-4 animate-pulse">
+                          <Brain className="h-8 w-8 text-primary" />
+                        </div>
+                        <h3 className="text-lg font-semibold mb-2">Analizando Presencia de Marca</h3>
+                        <p className="text-muted-foreground max-w-md mx-auto mb-4">
+                          Consultando múltiples modelos de IA y analizando respuestas...
+                        </p>
+                        <div className="w-64 mx-auto bg-secondary rounded-full h-2">
+                          <div className="bg-gradient-primary h-2 rounded-full animate-pulse" style={{ width: '60%' }}></div>
+                        </div>
+                      </div>
+                    </CardContent>
+                  </Card>
+                )}
+
+                {showResults && (
+                  <>
+                    {/* Metrics Cards */}
+                    <div className="grid md:grid-cols-4 gap-4">
+                      <MetricsCard
+                        title="Menciones Totales"
+                        value="11"
+                        description="En todos los modelos"
+                        icon={<Target className="h-4 w-4 text-primary" />}
+                        trend="up"
+                      />
+                      <MetricsCard
+                        title="Posición Promedio"
+                        value="3.0"
+                        description="Cuando se menciona"
+                        icon={<TrendingUp className="h-4 w-4 text-blue-500" />}
+                        color="secondary"
+                      />
+                      <MetricsCard
+                        title="Mejor Modelo"
+                        value="Gemini"
+                        description="Mayor menciones"
+                        icon={<BarChart3 className="h-4 w-4 text-green-500" />}
+                        color="success"
+                      />
+                      <MetricsCard
+                        title="Puntuación AEO"
+                        value="7.2/10"
+                        description="Visibilidad general"
+                        icon={<Brain className="h-4 w-4 text-yellow-500" />}
+                        color="warning"
+                      />
                     </div>
-                  </CardContent>
-                </Card>
-              </>
-            )}
-          </div>
-        </div>
+
+                    {/* Chart */}
+                    <LLMComparisonChart data={mockLLMData} />
+
+                    {/* Query Results */}
+                    <Card className="border-border/50 bg-gradient-to-br from-card/80 to-card/60 backdrop-blur-sm">
+                      <CardHeader>
+                        <CardTitle>Últimos Resultados de Consulta</CardTitle>
+                        <CardDescription>
+                          Desglose detallado de menciones de marca y contexto
+                        </CardDescription>
+                      </CardHeader>
+                      <CardContent>
+                        <div className="space-y-4">
+                          {mockLLMData.map((model) => (
+                            <div key={model.model} className="p-4 rounded-lg border border-border/30 bg-background/30">
+                              <div className="flex items-center justify-between mb-2">
+                                <h4 className="font-medium">{model.model}</h4>
+                                <div className="flex gap-2">
+                                  <Badge variant="outline" className="text-xs">
+                                    #{model.position}
+                                  </Badge>
+                                  <Badge variant="secondary" className="text-xs">
+                                    {model.mentions} menciones
+                                  </Badge>
+                                </div>
+                              </div>
+                              <p className="text-sm text-muted-foreground">
+                                Tu marca apareció {model.mentions} vez/veces en la posición {model.position} con contexto {
+                                  model.sentiment === 'positive' ? 'positivo' : 
+                                  model.sentiment === 'neutral' ? 'neutral' : 'negativo'
+                                }.
+                              </p>
+                            </div>
+                          ))}
+                        </div>
+                      </CardContent>
+                    </Card>
+                  </>
+                )}
+              </div>
+            </div>
+          </TabsContent>
+
+          <TabsContent value="ocr">
+            <OCRAnalyzer />
+          </TabsContent>
+
+          <TabsContent value="seo">
+            <SEOAnalyzer />
+          </TabsContent>
+
+          <TabsContent value="competidores">
+            <CompetitorAnalysis />
+          </TabsContent>
+
+          <TabsContent value="documentos">
+            <DocumentGenerator />
+          </TabsContent>
+        </Tabs>
       </main>
     </div>
   );
