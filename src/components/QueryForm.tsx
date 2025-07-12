@@ -42,7 +42,7 @@ export const QueryForm = ({ onSubmit, isLoading = false }: QueryFormProps) => {
           </h1>
         </div>
         <p className="text-muted-foreground text-lg">
-          Rastrea cómo aparece tu marca en diferentes modelos de IA
+          Ingresa el nombre de tu marca y una consulta para ver cómo funciona tu marca en diferentes modelos de IA.
         </p>
       </div>
 
