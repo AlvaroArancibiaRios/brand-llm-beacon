@@ -47,21 +47,24 @@ export const QueryForm = ({
       <form onSubmit={handleSubmit} className="space-y-6">
         {/* Brand Input with CTA */}
         <div className="relative">
+          <div className="absolute left-5 top-1/2 transform -translate-y-1/2 z-10">
+            <Search className="h-5 w-5 text-muted-foreground" />
+          </div>
           <Input 
             id="brand" 
             placeholder="Nombre de la marca (ej. Tesla, Apple, OpenAI)" 
             value={brand} 
             onChange={e => setBrand(e.target.value)} 
             onKeyDown={handleKeyDown} 
-            className="h-14 text-lg pl-6 pr-6 rounded-2xl border-2 border-border/40 bg-background/50 backdrop-blur-sm hover:border-border/60 focus:border-primary/50 focus:ring-2 focus:ring-primary/20 transition-all duration-200 placeholder:text-muted-foreground/60" 
+            className="h-14 text-lg pl-14 pr-6 rounded-2xl border-2 border-border/40 bg-background/50 backdrop-blur-sm hover:border-border/60 focus:border-primary/50 focus:ring-2 focus:ring-primary/20 transition-all duration-200 placeholder:text-muted-foreground/60" 
           />
           
           {/* Call to Action inside brand input area */}
           {brand.trim() && (
-            <div className="absolute -bottom-3 left-6 transform animate-fade-in">
-              <div className="flex items-center gap-2 bg-primary/10 border border-primary/20 rounded-full px-3 py-1 text-sm">
-                <Search className="h-3 w-3 text-primary" />
-                <span className="text-primary font-medium">Listo para el análisis?</span>
+            <div className="absolute -bottom-4 left-6 transform animate-fade-in">
+              <div className="flex items-center gap-3 bg-primary/10 border border-primary/20 rounded-full px-4 py-2">
+                <Search className="h-4 w-4 text-primary" />
+                <span className="text-primary font-bold text-xl">Listo para el análisis</span>
               </div>
             </div>
           )}
