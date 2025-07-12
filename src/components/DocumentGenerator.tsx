@@ -7,7 +7,7 @@ import { Label } from "@/components/ui/label";
 import { Textarea } from "@/components/ui/textarea";
 import { Badge } from "@/components/ui/badge";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
-import { FileText, Download, Copy, Robot, Globe, FileCode } from "lucide-react";
+import { FileText, Download, Copy, Bot, Globe, FileCode } from "lucide-react";
 import { useToast } from "@/hooks/use-toast";
 
 export const DocumentGenerator = () => {
@@ -284,7 +284,7 @@ Próxima revisión: ${new Date(Date.now() + 30*24*60*60*1000).toISOString().spli
               disabled={!websiteUrl || !brandName || isGenerating}
               className="w-full"
             >
-              <Robot className="h-4 w-4 mr-2" />
+              <Bot className="h-4 w-4 mr-2" />
               {isGenerating ? "Generando..." : "Generar Documentos"}
             </Button>
           </CardContent>
@@ -321,7 +321,7 @@ Próxima revisión: ${new Date(Date.now() + 30*24*60*60*1000).toISOString().spli
               <Tabs defaultValue="robots" className="w-full">
                 <TabsList className="grid w-full grid-cols-3">
                   <TabsTrigger value="robots" className="flex items-center gap-2">
-                    <Robot className="h-4 w-4" />
+                    <Bot className="h-4 w-4" />
                     robots.txt
                   </TabsTrigger>
                   <TabsTrigger value="llm" className="flex items-center gap-2">
