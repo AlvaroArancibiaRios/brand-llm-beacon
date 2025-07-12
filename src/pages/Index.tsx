@@ -71,23 +71,30 @@ const Index = () => {
   };
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-background via-background to-background/80">
+    <div className="min-h-screen bg-gradient-to-br from-background via-muted/20 to-background">
       {/* Header */}
-      <header className="border-b border-border/50 bg-card/30 backdrop-blur-sm">
-        <div className="container mx-auto px-4 py-4">
+      <header className="border-b border-border/50 bg-gradient-surface backdrop-blur-glass sticky top-0 z-50">
+        <div className="max-w-7xl mx-auto px-6 py-4">
           <div className="flex items-center justify-between">
             <div className="flex items-center gap-3">
-              <div className="h-10 w-10 rounded-lg bg-gradient-primary flex items-center justify-center">
+              <div className="h-11 w-11 rounded-xl bg-gradient-primary flex items-center justify-center shadow-soft">
                 <Brain className="h-6 w-6 text-white" />
               </div>
               <div>
-                <h1 className="text-xl font-bold">Rastreador LLM AEO</h1>
-                <p className="text-sm text-muted-foreground">Optimización de Motores de Respuestas de IA</p>
+                <h1 className="text-2xl font-bold bg-gradient-to-r from-foreground to-foreground/70 bg-clip-text text-transparent">
+                  Rastreador LLM AEO
+                </h1>
+                <p className="text-sm text-muted-foreground font-medium">
+                  Optimización de Motores de Respuestas de IA
+                </p>
               </div>
             </div>
             <div className="flex items-center gap-4">
-              <Badge variant="secondary" className="bg-primary/10 text-primary border-primary/20">
-                <Zap className="h-3 w-3 mr-1" />
+              <Badge 
+                variant="secondary" 
+                className="bg-gradient-primary/10 text-primary border-primary/20 font-medium px-3 py-1.5 shadow-soft"
+              >
+                <Zap className="h-3 w-3 mr-1.5" />
                 Versión Avanzada
               </Badge>
               <BurgerMenu activeTab={activeTab} onTabChange={setActiveTab} />
@@ -96,64 +103,62 @@ const Index = () => {
         </div>
       </header>
 
-      <main className="container mx-auto px-4 py-8">
+      <main className="max-w-7xl mx-auto px-6 py-12">
         <div className="w-full">
           {/* Sección actual según activeTab */}
 
           {activeTab === "consulta" && (
-            <div className="grid lg:grid-cols-3 gap-6">
+            <div className="grid lg:grid-cols-3 gap-8">
               {/* Left Column - Query Form */}
-              <div className="lg:col-span-1">
+              <div className="lg:col-span-1 space-y-6">
                 <QueryForm onSubmit={handleQuerySubmit} isLoading={isAnalyzing} />
                 
                 {showResults && (
-                  <div className="mt-6">
-                    <RecommendationsPanel recommendations={mockRecommendations} />
-                  </div>
+                  <RecommendationsPanel recommendations={mockRecommendations} />
                 )}
               </div>
 
               {/* Right Column - Results */}
-              <div className="lg:col-span-2 space-y-6">
+              <div className="lg:col-span-2 space-y-8">
                 {!showResults && !isAnalyzing && (
-                  <Card className="border-border/50 bg-gradient-to-br from-card/80 to-card/60 backdrop-blur-sm">
-                    <CardContent className="py-12">
-                      <div className="text-center">
-                        <div className="h-16 w-16 rounded-full bg-gradient-primary/10 flex items-center justify-center mx-auto mb-4">
-                          <Search className="h-8 w-8 text-primary" />
-                        </div>
-                        <h3 className="text-lg font-semibold mb-2">Listo para Analizar</h3>
-                        <p className="text-muted-foreground max-w-md mx-auto">
-                          Ingresa el nombre de tu marca y una consulta para ver cómo funciona tu marca en diferentes modelos de IA.
-                        </p>
+                  <div className="bg-gradient-surface backdrop-blur-glass border border-border/50 rounded-2xl p-12 shadow-soft">
+                    <div className="text-center max-w-md mx-auto">
+                      <div className="h-20 w-20 rounded-2xl bg-gradient-primary/10 flex items-center justify-center mx-auto mb-6">
+                        <Search className="h-10 w-10 text-primary" />
                       </div>
-                    </CardContent>
-                  </Card>
+                      <h3 className="text-2xl font-cal font-semibold mb-3 text-foreground">
+                        Listo para Analizar
+                      </h3>
+                      <p className="text-muted-foreground leading-relaxed">
+                        Ingresa el nombre de tu marca y una consulta para ver cómo funciona tu marca en diferentes modelos de IA.
+                      </p>
+                    </div>
+                  </div>
                 )}
 
                 {isAnalyzing && (
-                  <Card className="border-border/50 bg-gradient-to-br from-card/80 to-card/60 backdrop-blur-sm">
-                    <CardContent className="py-12">
-                      <div className="text-center">
-                        <div className="h-16 w-16 rounded-full bg-gradient-primary/10 flex items-center justify-center mx-auto mb-4 animate-pulse">
-                          <Brain className="h-8 w-8 text-primary" />
-                        </div>
-                        <h3 className="text-lg font-semibold mb-2">Analizando Presencia de Marca</h3>
-                        <p className="text-muted-foreground max-w-md mx-auto mb-4">
-                          Consultando múltiples modelos de IA y analizando respuestas...
-                        </p>
-                        <div className="w-64 mx-auto bg-secondary rounded-full h-2">
-                          <div className="bg-gradient-primary h-2 rounded-full animate-pulse" style={{ width: '60%' }}></div>
-                        </div>
+                  <div className="bg-gradient-surface backdrop-blur-glass border border-border/50 rounded-2xl p-12 shadow-soft">
+                    <div className="text-center max-w-md mx-auto">
+                      <div className="h-20 w-20 rounded-2xl bg-gradient-primary/10 flex items-center justify-center mx-auto mb-6 animate-pulse">
+                        <Brain className="h-10 w-10 text-primary" />
                       </div>
-                    </CardContent>
-                  </Card>
+                      <h3 className="text-2xl font-cal font-semibold mb-3 text-foreground">
+                        Analizando Presencia de Marca
+                      </h3>
+                      <p className="text-muted-foreground leading-relaxed mb-6">
+                        Consultando múltiples modelos de IA y analizando respuestas...
+                      </p>
+                      <div className="w-64 mx-auto bg-muted rounded-full h-2">
+                        <div className="bg-gradient-primary h-2 rounded-full animate-pulse" style={{ width: '60%' }}></div>
+                      </div>
+                    </div>
+                  </div>
                 )}
 
                 {showResults && (
                   <>
                     {/* Metrics Cards */}
-                    <div className="grid md:grid-cols-4 gap-4">
+                    <div className="grid md:grid-cols-4 gap-6">
                       <MetricsCard
                         title="Menciones Totales"
                         value="11"
