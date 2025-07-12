@@ -77,7 +77,7 @@ export const BurgerMenu = ({ activeTab, onTabChange }: BurgerMenuProps) => {
         <Button 
           variant="outline" 
           size="icon"
-          className="relative h-10 w-10 border-border/50 bg-card/30 backdrop-blur-sm hover:bg-card/50 transition-all duration-200"
+          className="relative h-10 w-10 border-border/20 bg-background/50 backdrop-blur-xl hover:bg-background/80 transition-all duration-200 rounded-2xl"
         >
           <Menu className="h-5 w-5" />
         </Button>
@@ -85,13 +85,13 @@ export const BurgerMenu = ({ activeTab, onTabChange }: BurgerMenuProps) => {
       
       <SheetContent 
         side="left" 
-        className="w-80 p-0 bg-gradient-to-br from-background via-background to-background/80 border-border/50"
+        className="w-80 p-0 bg-gradient-to-br from-background/95 via-background/90 to-background/85 border-border/20 backdrop-blur-xl"
       >
         {/* Header del menú */}
-        <div className="p-6 border-b border-border/50 bg-card/30 backdrop-blur-sm">
+        <div className="p-6 border-b border-border/20 bg-background/30 backdrop-blur-xl">
           <div className="flex items-center justify-between">
             <div className="flex items-center gap-3">
-              <div className="h-10 w-10 rounded-lg bg-gradient-primary flex items-center justify-center">
+              <div className="h-10 w-10 rounded-2xl bg-gradient-primary flex items-center justify-center shadow-lg shadow-primary/20">
                 <Brain className="h-6 w-6 text-white" />
               </div>
               <div>
@@ -103,7 +103,7 @@ export const BurgerMenu = ({ activeTab, onTabChange }: BurgerMenuProps) => {
               variant="ghost" 
               size="icon"
               onClick={() => setIsOpen(false)}
-              className="h-8 w-8"
+              className="h-8 w-8 rounded-xl"
             >
               <X className="h-4 w-4" />
             </Button>
@@ -120,15 +120,15 @@ export const BurgerMenu = ({ activeTab, onTabChange }: BurgerMenuProps) => {
               <Button
                 key={item.id}
                 variant={isActive ? "secondary" : "ghost"}
-                className={`w-full h-auto p-4 justify-start text-left transition-all duration-200 ${
+                className={`w-full h-auto p-4 justify-start text-left transition-all duration-200 rounded-2xl ${
                   isActive 
                     ? "bg-primary/10 text-primary border border-primary/20 shadow-sm" 
-                    : "hover:bg-card/50 hover:scale-[1.02]"
+                    : "hover:bg-background/50 hover:scale-[1.02]"
                 }`}
                 onClick={() => handleMenuItemClick(item.id)}
               >
                 <div className="flex items-start gap-3 w-full">
-                  <div className={`p-2 rounded-lg ${
+                  <div className={`p-2 rounded-xl ${
                     isActive 
                       ? "bg-primary/20" 
                       : "bg-muted/50"
@@ -148,7 +148,7 @@ export const BurgerMenu = ({ activeTab, onTabChange }: BurgerMenuProps) => {
                       {item.badge && (
                         <Badge 
                           variant={item.badge === "Principal" ? "default" : "secondary"}
-                          className={`text-xs px-2 py-0 h-5 ${
+                          className={`text-xs px-2 py-0 h-5 rounded-full ${
                             item.badge === "Nuevo" ? "bg-green-500/10 text-green-600 border-green-500/20" :
                             item.badge === "IA" ? "bg-purple-500/10 text-purple-600 border-purple-500/20" :
                             "bg-primary/10 text-primary border-primary/20"
@@ -170,13 +170,13 @@ export const BurgerMenu = ({ activeTab, onTabChange }: BurgerMenuProps) => {
         </div>
 
         {/* Footer del menú */}
-        <div className="absolute bottom-0 left-0 right-0 p-4 border-t border-border/50 bg-card/30 backdrop-blur-sm">
+        <div className="absolute bottom-0 left-0 right-0 p-4 border-t border-border/20 bg-background/30 backdrop-blur-xl">
           <div className="flex items-center justify-between">
             <div>
               <p className="text-xs font-medium">Versión Avanzada</p>
               <p className="text-xs text-muted-foreground">Optimización AEO</p>
             </div>
-            <Badge variant="secondary" className="bg-primary/10 text-primary border-primary/20">
+            <Badge variant="secondary" className="bg-primary/10 text-primary border-primary/20 rounded-full">
               <Zap className="h-3 w-3 mr-1" />
               Pro
             </Badge>
